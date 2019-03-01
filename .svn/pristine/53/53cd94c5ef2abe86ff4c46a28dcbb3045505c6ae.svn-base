@@ -1,0 +1,12 @@
+[
+	{"userid":"wangxiaoming","course":"语文","teacherName":"王晓明","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"男","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"启用","operation":"USER-1"},
+	{"userid":"hanmeimei","course":"数学","teacherName":"韩梅梅","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"女","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"启用","operation":"USER-10"},
+	{"userid":"ouyangfeifei","course":"英语","teacherName":"欧阳菲菲","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"女","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"禁用","operation":"USER-11"},
+	{"userid":"yangcan","course":"历史","teacherName":"杨灿","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"男","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"启用","operation":"USER-12"},
+	{"userid":"fenboyang","course":"政治","teacherName":"冯伯阳","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"男","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"启用","operation":"USER-13"},
+	{"userid":"xiyaqing","course":"地理","teacherName":"席亚晴","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"女","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"启用","operation":"USER-14"},
+	{"userid":"liusiting","course":"物理","teacherName":"刘思婷","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"女","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"启用","operation":"USER-15"},
+	{"userid":"kuangyao","course":"化学","teacherName":"匡尧","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"男","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"启用","operation":"USER-16"},
+	{"userid":"duansidi","course":"生物","teacherName":"段思迪","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"女","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"禁用","operation":"USER-17"},
+	{"userid":"yudabao","course":"体育","teacherName":"于大宝","courseTime":"第一节课","limitPeoNum":"50","courseAddress":"教室1","usersex":"男","userrole":"学生","attr1":"徐州市鼓楼小学","userstatus":"启用","operation":"USER-18"}
+]

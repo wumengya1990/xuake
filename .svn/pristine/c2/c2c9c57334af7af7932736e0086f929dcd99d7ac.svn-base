@@ -1,0 +1,61 @@
+
+import {mapState} from 'vuex';
+
+export default {
+
+  computed: {
+    ...mapState(['userModule'])
+  },
+  methods: {
+    findUserInfo() {
+         this.$ajax.get('/findUserInfo',{params:{}})
+          .then((response)=>{
+            if (response.data.record!=null) {
+              Object.assign(this.userModule, {
+              isLogin: true,
+              bigHeaderImg:response.data.record.bigHeaderImg,//大头像
+              middleHeaderImg:response.data.record.middleHeaderImg,//中头像
+              smallHeaderImg:response.data.record.smallHeaderImg,
+              phone:response.data.record.phone,//手机号
+              userId:response.data.record.id,
+              ucId:response.data.record.ucId,
+              status:response.data.record.status,//用户状态
+              type:response.data.record.type,//用户类型
+              loginName:response.data.record.loginName,
+              post:response.data.record.post,//职位
+              schoolName:response.data.record.schoolName,
+              realName:response.data.record.realName,
+              sex:response.data.record.sex,
+              orgId:response.data.record.orgId,
+              demo:response.data.record.demo==null||response.data.record.demo==undefined||response.data.record.demo=='undefined'?"":response.data.record.demo
+              });
+              //定义全局变量
+              if(this.userModule.type!=''&&this.userModule.type!='undefined'&&this.userModule.type!=undefined){
+                  window.user_Over_Type = this.userModule.type;
+              }
+              if(this.userModule.type=='Student'&&this.userModule.demo=='pc'){
+                this.$router.push({
+                 name:"stuIndexPage"
+                  });
+              };
+              if(this.userModule.type=='Teacher'&&this.userModule.demo=='pc'){
+       
+                this.$router.push({
+                 name:"IndexPage1"
+                  });
+              };
+             
+            }else{
+
+             layer.msg("用户没有登录");
+             this.$router.push({
+                name:"Login"
+              });
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+  }
+}

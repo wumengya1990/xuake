@@ -1,0 +1,40 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, s, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video{border: 0 none;margin: 0;outline: 0 none;padding:0;}
+*{word-break: break-all}
+body, html{color: #333;font: 12px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-seri;}
+input{margin: 0;padding: 0;vertical-align: middle;font-family: arial,"Microsoft Yahei","Hiragino Sans GB",sans-seri;}
+li{list-style-type: none;}
+img{text-align: center;vertical-align: middle;}
+address, cite, dfn, em, var { font-style: normal;}
+a{text-decoration: none;color: #666;cursor: pointer;}
+a:hover{text-decoration: underline;color: #f30;}
+.clra{clear:both;font-size:0px;margin:0px;padding:0px;height:0px;line-height:0px;}
+.lfloat{float:left;}
+.rfloat{float:right;}
+.ellipsis{white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+
+.loginBanner{width:596px;height:500px;}
+.loginTitle{height:90px;line-height:90px;color:#656565;font-size:28px;font-weight:normal;width:1200px;margin:0px auto;letter-spacing:1px}
+.loginBg{margin:0px auto;}
+.online{height:80px;line-height:80px;width:320px;font-size:26px;padding-left:20px;}
+.online em{color:#fff;margin-left:51px;}
+.online span{color:#FF0;font-size:16px;margin-left:5px;}
+.m_login_div{width:353px;height:424px;;margin-top:38px;}
+.loginCopy{background-color:#F3F3F3;height:40px;padding-top:6px;text-align:center;color:#999;font-size:12px;width:340px;margin-top:26px;}
+
+/* 登录 */
+.m_login{width:340px;}
+.m_login ul{width:300px;margin:30px auto 0px;}
+.m_login ul li{padding:0 0 15px 0;position:relative;height:20%;font-size: 14px;color:#666}
+.m_login ul li a{color:#009FE9;float:right;font-size: 14px;}
+.m_login ul li .rember{margin: 0 5px 0 0;}
+.m_login .shuruk{border:1px solid #dedede;height:100%;width:300px;border-radius:3px;background-color:#fff;}
+.m_login .shuru{border:none;color:#666;width:245px;height:40px;line-height:40px;border-radius:4px;font-size:15px;outline: #093;}
+.tijiao{width:300px;margin:10px 21px 0px;cursor:pointer; height:40px; font-size:16px; background:#24BAFF; color:#FFF; border:none; border-radius:3px;}
+.tijiao:hover{background:#06AEFF;}
+.user{width:40px;height:40px;float:left;}
+.password{width:40px;height:40px;float:left;}
+.m_loginM{width:300px;margin-left:21px;}
+.errorPrompt{color:#f00;width:310px;margin:10px auto 0px;}
+.copyright{font-size:13px;text-align:center;width:1100px;margin:15px auto 0px;color:#666}
+.copyright a{color:#009FE9;}
+.copyright a:hover{text-decoration:underline;color:#f30;}

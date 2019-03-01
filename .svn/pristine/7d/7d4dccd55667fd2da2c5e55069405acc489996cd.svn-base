@@ -1,0 +1,97 @@
+.clear{ clear:both; padding: 0; margin: 0; line-height: 0;}
+.bgColor{background: #F5F5F5;}
+.mainContent{ width: 1200px; margin:20px auto; padding: 10px; background: #FFFFFF;}
+
+.curriculumBox { border-bottom: 1px solid #eaeaea; padding:20px 10px; position: relative;}
+.curriculumBox h3{ font-size: 16px; color: #333333;}
+.curriculumBox .condition{ padding: 10px 0; color: #999999;}
+.curriculumBox .condition em{ float: left;}
+.curriculumBox .condition p{ overflow: hidden;}
+.curriculumBox .curriculumSet a{ display:inline-block; height: 30px; line-height: 30px; border: 1px solid #EAEAEA; padding: 0 10px; border-radius:3px; margin: 0 5px 0 0;}
+.curriculumBox .curriculumSet a:hover{ box-shadow: 0 1px 3px #c5c5c5; border: 1px solid #FFFFFF; color: #2ab1e8;}
+.curriculumBox .curriculumSet a i{ vertical-align: middle; margin:-3px 3px 0 0; display: inline-block; font-size: 18px;}
+
+.curriculumBox .bts{ position:absolute; right: 20px; top: 0; bottom: 0; left: auto; margin: 0;}
+.curriculumBox .bts a{ float: left; width: 50px; height: 50px; border: 1px solid #EAEAEA; border-radius: 10px; text-align: center; line-height: 50px; margin:40px 0 0 20px; cursor: pointer; color: #999999;}
+.curriculumBox .bts a i{ font-size: 26px;}
+.curriculumBox .bts a:hover{border: 1px solid #2ab1e8; background:#2ab1e8; color:#FFFFFF;}
+
+/*弹层内容*/
+.tcForm{ padding: 10px; position: absolute; left: 0; top:46px; right: 0; bottom:50px; margin:auto; overflow: hidden; overflow-y:auto; }
+.tcFormS{ padding: 10px;position:absolute; left:0; top:45px; right:0; bottom:53px; overflow:hidden; overflow-y:auto;}
+.tcTable{ padding: 0 10px; position:absolute; left:0; top:100px; right:0; bottom:53px; overflow:hidden; overflow-y:auto;}
+.tcSeacherBar{ padding:10px;}
+.activityImg{ width:50%;}
+.activityImg img{ width: 100%;}
+.tcBottomFill{ height: 55px;}
+/*弹层内容结束*/
+
+.stepLinkList{ padding: 10px; position: absolute; left:490px; top: -4px;}
+.stepLinkList a{ float: left; padding: 0 20px; height: 30px; line-height: 30px; border-radius: 50px; margin: 0 10px 0 0;}
+.stepLinkList a:hover{ color: #2ab1e8;}
+.stepLinkList a.on{ background: #2ab1e8; color: #FFFFFF;}
+
+
+.leftStatistics{ float: left;}
+.leftStatistics p{ float: left; margin:6px 20px 0 0; color: #666666;}
+.leftStatistics p em{  font-size: 16px; color: #333333; padding: 0 5px;}
+.leftStatistics p a{ color: #2ab1e8; font-size: 16px; padding: 0 5px;}
+.leftScreen{ float: left; padding: 5px 0 0;}
+.leftScreen span{ background: #F5F5F5; height: 25px; line-height: 25px; border-radius: 50px; float: left; margin: 0 5px 0 0; padding: 0 15px; font-size: 13px; color: #999999; cursor: pointer;}
+.leftScreen span.on{ background: #2ab1e8; color: #FFFFFF;}
+
+.haveChoiceSubject{ margin:10px; background:#f7fdff; padding: 10px; border: 1px solid #cdebf7;}
+.haveChoiceSubject select{ height: 30px; line-height: 30px; font-size: 14px; padding: 0 10px; border: 1px solid #EAEAEA; border-radius:5px;}
+.haveChoiceSubject ul{ float: left; width: 100%;}
+.haveChoiceSubject ul li{ padding: 5px 0; font-size: 15px; float: left; width: 100%;}  /*已选课程字体字体在此设置*/
+.haveChoiceSubject ul li em{ float: left;}
+.haveChoiceSubject ul li .rightContent{ overflow:hidden;}
+.haveChoiceSubject ul li .rightContent span.state{ color: #2ab1e8; padding: 0 10px;}
+.haveChoiceSubject ul li .rightContent p.Remarks{ color: #999999;}
+.haveChoiceSubject ul li .rightContent p.Remarks span{ color: #666666; padding: 0 10px; font-size: 16px; font-weight: bold;}
+.choDataTable{ padding: 10px 10px;}
+
+
+.setBox{}
+.setBox h3{ border-bottom:1px solid #EAEAEA; height: 35px; line-height: 35px;}
+.setBox .setBox_1{ padding: 10px 0;}
+.setBox .setBox_1 em{ float: left; margin: 5px 5px 0 0;}
+
+.classCho{ padding: 0 0 10px;}
+.classCho .classBox{ float:left; width: 180px; margin: 0 10px 0 0; border:1px solid #EAEAEA; border-radius: 3px;}
+.classCho .classBox h4{ height: 35px; line-height: 35px; border-bottom:1px solid #EAEAEA; padding: 0 10px;}
+.classCho .classBox ul{ padding: 10px 0;}
+.classCho .classBox ul li{ padding:0 10px; height: 35px; line-height: 35px; cursor: pointer;}
+.classCho .classBox ul li:hover{ background: #F5F5F5;}
+.classCho .classBox ul li.on{ background: #70beff; color: #FFFFFF;}
+.classCho .resultBox{ float:left; width:200px; margin: 0 10px 0 0; border:1px solid #EAEAEA; border-radius: 3px;}
+
+.classCho .resultBox h4{ height: 35px; line-height: 35px; border-bottom:1px solid #EAEAEA; padding: 0 10px;}
+.classCho .resultBox ul{ padding: 10px 0;}
+.classCho .resultBox ul li{ height: 35px; line-height: 35px; padding:0 10px; overflow: hidden;}
+.classCho .resultBox ul li a{ float: right; cursor: pointer;}
+.classCho .resultBox ul li a i{ color: #999999;}
+.classCho .resultBox ul li a:hover i{ color: #FF0000;}
+.tcForm{ padding: 10px;}
+.tcTable{ padding: 0 10px;}
+.tcSeacherBar{ padding:10px;}
+.activityImg{ width:50%;}
+.activityImg img{ width: 100%;}
+.tcBottomFill{ height: 55px;}
+/*弹层内容结束*/
+
+.stepLinkList{ padding: 10px; position: absolute; left:490px; top: -4px;}
+.stepLinkList a{ float: left; padding: 0 20px; height: 30px; line-height: 30px; border-radius: 50px; margin: 0 10px 0 0;}
+.stepLinkList a:hover{ color: #2ab1e8;}
+.stepLinkList a.on{ background: #2ab1e8; color: #FFFFFF;}
+
+
+.leftStatistics{ float: left;}
+.leftStatistics p{ float: left; margin:6px 20px 0 0; color: #666666;}
+.leftStatistics p em{  font-size: 16px; color: #333333; padding: 0 5px;}
+.leftStatistics p a{ color: #2ab1e8; font-size: 16px; padding: 0 5px;}
+.leftScreen{ float: left; padding: 5px 0 0;}
+.leftScreen span{ background: #F5F5F5; height: 25px; line-height: 25px; border-radius: 50px; float: left; margin: 0 5px 0 0; padding: 0 15px; font-size: 13px; color: #999999; cursor: pointer;}
+.leftScreen span.on{ background: #2ab1e8; color: #FFFFFF;}
+
+
