@@ -26,6 +26,7 @@
         <div class="hwui-search-bar">
           <div class="hwui-r-float">
             <input type="button" class="hwui-btn hwui-btn-submit" value="导出课程" @click="exportCourse()"/>
+            <input type="button" class="hwui-btn hwui-btn-submit" @click="ImportCLass()" value="导入课程" />
             <input type="button" class="hwui-btn hwui-btn-submit" @click="addCourse" value="新建课程" />
           </div>
           <div class="clra"></div>
@@ -134,6 +135,49 @@
       </div>
       <!--列表编辑结束-->
 
+      <!--  导入课程 -->
+    <div id="layerEditImportCLass" class="hwui-layer" :style="{right:-layerWidth,width:layerWidth}">
+      <div class="ld-title">
+        <h3>导入课程</h3>
+        <i class="hwui hwuifont hwui-shanchu ldt-close" @click="closeImportCLass()"></i>
+      </div>
+      <div class="ld-content-edit hwui-v-scroll">
+        <div class="hwui-pa10 hwui-hidden">
+          <div class="downloadBox">
+            <el-button type="primary" style="display:block; width:200px; margin:10px auto;" @click="downLoadDocument()">下载模板</el-button>
+            <div class="noticeMessage">
+              <p>1、请下载模板，并按照模板格式填写，再导入数据</p>
+            </div>
+          </div>
+          <div class="upLoadBox" style="width:100%;">
+              <el-upload
+                class="upload-demo"
+                :action="uploadPathNew"
+                :data="keysss"
+                :format="['xls', 'xlsx']"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-change="handleChange"
+                :before-upload="beforeUP"
+                :on-success="handleSuccessNew"
+                :file-list="formNew.fileList"
+                :limit="1"
+                list-type="picture"
+                >
+                <el-button size="small" type="primary">点击上传</el-button>
+                <div slot="tip" class="el-upload__tip">只能上传1张图片（支持jpg/png）</div>
+              </el-upload>
+          </div>
+        </div>
+      </div>
+      <div class="ld-content-btn">
+        <!-- <input type="button" class="hwui-btn" @click="shangchuan()" value="提交" /> -->
+        <input type="button" class="hwui-btn hwui-btn-close" @click="closeImportCLass()" style=" width:100px;" value="取消" />
+
+      </div>
+    </div>
+ <!--  导入课程结束 --> 
+
   </div>
 </template>
 
@@ -159,6 +203,9 @@
         foldBtnBg:fold_Btn_Bg,
         layerWidth:'50%',
         taskId:this.$route.params.setTaskId,
+        keysss:{
+          taskId:this.$route.params.setTaskId
+        },
         isPublish:this.$route.params.setStatus,
         teacherList : [],
         options: [
@@ -196,6 +243,12 @@
           limitNumber:[{required: true, message: '请输入限选人数', trigger: 'blur'}],
           classTime:[{required: true, message: '请选择上课时间', trigger: 'change'}],
           section:[{required: true, message: '请选择上课节次', trigger: 'blur'}]
+        },
+        formNew:{
+            name:'',
+            courseImg:'',
+            fileList : [],
+            isUpload:0
         }
 
       }
@@ -217,11 +270,13 @@
       ...mapState(['userModule']),
       uploadPath() {
         return `${window.projectConf.serverPath}taskCourse/uploadImg`;
+      },
+      uploadPathNew() {
+        return `${window.projectConf.serverPath}load/uploadExcel`;
       }
     },
     created(){
        this.foldBtnBg = baseURL + this.foldBtnBg;
-  
        this.getCourseList();
        this.loadAllTeacher();
        this.router_intercep();//前端路由拦截
@@ -452,7 +507,16 @@
       },
       handleSuccess(res,file,fileList){
         //console.log(file);
-        this.form.courseImg = file.response;
+        this.formNew.courseImg = file.response;
+        console.log(this.formNew);
+        this.getCourseList();
+        this.isUpload = 1;
+      },
+      handleSuccessNew(res,file,fileList){
+        console.log(res);
+        console.log(file);
+        console.log(fileList);
+        this.formNew.courseImg = file.response;
         this.isUpload = 1;
       },
       querySearch(queryString, cb) {
@@ -501,7 +565,37 @@
           .catch(function (error) {
             console.log(error);
           });
+      },
+      ImportCLass(){
+        this.layerOpen($('#layerEditImportCLass'));
+      },
+      closeImportCLass(){
+        this.layerClose($('#layerEditImportCLass'));
+      },
+      beforeUP(file){
+        this.isUpload = 0;
+          // console.log(file,'文件');
+          // let that = this;
+          // that.files = file;
+          // const extension = file.name.split('.')[1] === 'xls'
+          // const extension2 = file.name.split('.')[1] === 'xlsx'
+          // const isLt2M = file.size / 1024 / 1024 < 10
+          // if (!extension && !extension2) {
+          //   that.$message.warning('上传模板只能是 xls、xlsx格式!')
+          //   return false
+          // }
+          // if (!isLt2M) {
+          //    that.$message.warning('上传模板大小不能超过10MB!')
+          //     return false
+          // }
+          //   that.formNew.name = file.name;
+          //   return false // 返回false不会自动上传
+      },
+      downLoadDocument(){
+        window.open(baseURL+"/load/downloadExcel");
       }
+
+
     }
 
   }

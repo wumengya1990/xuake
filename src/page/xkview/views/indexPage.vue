@@ -16,7 +16,6 @@
           <!--<li class="pl"><input type="button" class="hwui-btn hwui-btn-primary" value="查询" /></li>-->
         </ul>
         <div class="hwui-r-float">
-          <input type="button" class="hwui-btn hwui-btn-submit" @click="ImportCLass()" value="导入课程" />
           <input type="button" class="hwui-btn hwui-btn-submit" @click="addChooseCourse()" value="新建选课任务" />
         </div>
       </div>
@@ -121,43 +120,7 @@
       </div>
     </div>
     <!--任务列表编辑-->
-    <!--  导入课程 -->
-    <div id="layerEditImportCLass" class="hwui-layer" :style="{right:-layerWidth,width:layerWidth}">
-      <div class="ld-title">
-        <h3>导入课程</h3>
-        <i class="hwui hwuifont hwui-shanchu ldt-close" @click="closeImportCLass()"></i>
-      </div>
-      <div class="ld-content-edit hwui-v-scroll">
-        <div class="hwui-pa10 hwui-hidden">
-          <div class="downloadBox">
-            <el-button type="primary" style="display:block; width:200px; margin:10px auto;">下载模板</el-button>
-            <div class="noticeMessage">
-              <p>1、请下载模板，并按照模板格式填写，再导入数据</p>
-            </div>
-          </div>
-          <div class="upLoadBox" style="width:100%;">
-              <el-upload
-                class="upload-demo"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :before-remove="beforeRemove"
-                multiple
-                :limit="3"
-                :on-exceed="handleExceed"
-                :file-list="fileList">
-                <el-button size="small" type="primary" style="display:block; width:200px; margin:0 auto;">点击上传</el-button>
-                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-              </el-upload>
-          </div>
-        </div>
-      </div>
-      <div class="ld-content-btn">
-        <!-- <input type="button" class="hwui-btn" @click="subTasks()" value="提交" /> -->
-        <input type="button" class="hwui-btn hwui-btn-close" @click="closeImportCLass()" style=" width:100px;" value="取消" />
-
-      </div>
-    </div>
+    
   </div>
 </template>
 
@@ -192,8 +155,7 @@
         sTimeDetail:"",
         eTimeDetail:"",
         taskEditId:"",
-        noDataPic:no_Data_Pic,
-        fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
+        noDataPic:no_Data_Pic
       }
     },
     mounted(){
@@ -309,12 +271,6 @@
         this.sTime ="";
         this.eTime ="";
         this.layerOpen($('#layerEdit'));
-      },
-      ImportCLass(){
-        this.layerOpen($('#layerEditImportCLass'));
-      },
-      closeImportCLass(){
-        this.layerClose($('#layerEditImportCLass'));
       },
       layerOpen(obj){
         $(".hwui-layer-mask").show();
@@ -448,18 +404,6 @@
          name:"LookResult",
          params: { looktaskId: tid }
        });
-      },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-      handleExceed(files, fileList) {
-        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-      },
-      beforeRemove(file, fileList) {
-        return this.$confirm(`确定移除 ${ file.name }？`);
       }
 
     }
