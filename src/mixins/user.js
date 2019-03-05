@@ -1,8 +1,8 @@
 
 import {mapState} from 'vuex';
-
+import store from "./../page/xkview/vuex/store"
 export default {
-
+  store,
   computed: {
     ...mapState(['userModule'])
   },
@@ -32,6 +32,9 @@ export default {
               orgId:response.data.record.orgId,
               demo:response.data.record.demo==null||response.data.record.demo==undefined||response.data.record.demo=='undefined'?"":response.data.record.demo
               });
+              
+              that.$store.commit("saveUcId",that.userModule.ucId); //保存 token
+              // console.log(that.$store.state.ucId)
               //定义全局变量
               if(that.userModule.type!=''&&that.userModule.type!='undefined'&&that.userModule.type!=undefined){
                   window.user_Over_Type = that.userModule.type;
@@ -48,7 +51,8 @@ export default {
                      });
                 }else{
                   that.$router.push({
-                    name:"IndexPage1"
+                    name:"IndexPage1",
+                    params:{ucId:that.userModule.ucId}
                      });
 
                 }

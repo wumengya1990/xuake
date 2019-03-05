@@ -9,8 +9,8 @@
 /*该文件不要做任何修改*/
 import Vue from 'vue';
 import router from './router/router';
-
 import Index from './Index.vue';
+
 
 new Vue({
   el: '#index',

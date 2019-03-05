@@ -3,15 +3,15 @@
 article, aside, details, summary, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, s, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {border: 0 none;margin: 0;outline: 0 none;padding: 0;}
 * {word-break: break-all;}
-body, html {color:#444; font:13px/1.5 arial,"微软雅黑","Microsoft Yahei","Hiragino Sans GB",sans-seri;background-color:#f3f3f3;}
+body, html {color:#444; font:14px/1.5 arial,"微软雅黑","Microsoft Yahei","Hiragino Sans GB",sans-seri;background-color:#f3f3f3;}
 input { margin: 0;padding: 0;vertical-align:middle;font-size:14px; font-family:"微软雅黑","Microsoft Yahei","Hiragino Sans GB",sans-seri;}
 textarea{font-family:"微软雅黑","Microsoft YaHei",Arial;font-size:14px;}
 select{cursor: pointer; vertical-align: middle;}
 li {list-style-type: none;}
 img {text-align: center; vertical-align: middle;}
 address, cite, dfn, em, var { font-style: normal;}
-a { text-decoration: none; color:red; cursor:pointer; font-weight:bold;}
-a:hover { text-decoration: underline;color:#f30;}
+a { text-decoration: none; color:red; cursor:pointer;}
+a:hover { text-decoration:underline; color:#f30;}
 img{border:0px;}
 .default_bg{background:-moz-linear-gradient(top, #1E8CD8 0%, #28B5F1 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1E8CD8), color-stop(100%,#28B5F1));background: -webkit-linear-gradient(top, #1E8CD8 0%,#28B5F1 100%);background: -o-linear-gradient(top, #1E8CD8 0%,#28B5F1 100%);background: -ms-linear-gradient(top, #1E8CD8 0%,#28B5F1 100%);background: linear-gradient(to bottom, #1E8CD8 0%,#28B5F1 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1E8CD8', endColorstr='#28B5F1',GradientType=0 );}
 

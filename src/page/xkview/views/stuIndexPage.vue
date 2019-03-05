@@ -42,12 +42,12 @@
       <div class="choDataTable">
         <div id="dataTable" class="dataTable studentChouBox" style="position: fixed; left:10px; right:10px; top:200px; bottom:20px; margin:auto;">
           <div class="switchBtn">
-							<el-button type="primary" size="mini" @click="listStyle=!listStyle">列表样式切换</el-button>
+							<!-- <el-button type="primary" size="mini" @click="listStyle=!listStyle">列表样式切换</el-button> -->
 					</div>
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane name="first">
-                  <span slot="label"> 全部课程（{{hacChoClassData.length}}/{{tableData3.length}}）</span>
-                  <div v-show="listStyle">
+                  <span slot="label"> 全部课程（{{haveClass}}/{{allClass}}）</span>
+                  <div v-show="listStyle=='1'">
                   <el-table :data="tableData3" border class="dadadada" height="500px" style="width: 100%">
                     <el-table-column prop="courseName" label="课程名称"></el-table-column>
                     <el-table-column prop="teacherName" label="任课老师"></el-table-column>
@@ -68,7 +68,7 @@
                   </el-table>
                   </div>
 
-                  <div v-show="!listStyle">
+                  <div v-show="listStyle=='2'">
 									<div class="classList">
 										<div class="classBox" v-for="(d,index) in tableData3" :key="index" :class="{classBoxOn:d.courseFlag=='退选'}">
 											<h3>{{d.courseName}}</h3>
@@ -87,8 +87,8 @@
             </el-tab-pane>
 
             <el-tab-pane name="second">
-              <span slot="label"> 已选课程{{hacChoClassData.length}}</span>
-              <div v-show="listStyle">
+              <span slot="label"> 已选课程{{haveClass}}</span>
+              <div v-show="listStyle=='1'">
                 <el-table :data="hacChoClassData" border class="dadadada" height="500px" style="width: 100%">
                     <el-table-column prop="courseName" label="课程名称"></el-table-column>
                     <el-table-column prop="teacherName" label="任课老师"></el-table-column>
@@ -108,7 +108,7 @@
                     </el-table-column>
                   </el-table>
               </div>
-               <div v-show="!listStyle">
+               <div v-show="listStyle=='2'">
                  <div class="classList">
 										<div class="classBox" v-for="(d,index) in hacChoClassData" :key="index" :class="{classBoxOn:d.courseFlag=='退选'}">
 											<h3>{{d.courseName}}</h3>
@@ -254,7 +254,9 @@
     mixins: [User],
     data() {
       return {
-        listStyle:true,
+        allClass:0,
+        haveClass:0,
+        listStyle:'1',
         choList:[],
         activeName:'first',
         terms:[],
@@ -281,7 +283,6 @@
       // this.router_intercep();
     },
     mounted() {
-      
     },
     watch:{
       'taskId':{
@@ -313,19 +314,24 @@
       },
       //下拉框
       getSelectXkTask() {
-        this.$ajax.get('stu/getSelectXkTask', {
+        let that = this;
+        that.$ajax.get('stu/getSelectXkTask', {
           params: {
           }
         })
           .then((response) => {
+            console.log(response);
+            // console.log("123");
+            that.listStyle = response.data[0].remark5;
+            // console.log(that.listStyle)
             if (response.data == null||response.data.length==0||response.data==undefined) {
               layer.msg("暂无选课任务！");
-              this.toNoDataPage();
+              that.toNoDataPage();
               return;
             } else {
-              this.tasks = response.data;
-              this.taskId = this.tasks[0].id;
-              this.changeTerms(this.taskId);
+              that.tasks = response.data;
+              that.taskId = that.tasks[0].id;
+              that.changeTerms(that.taskId);
             }
 
           })
@@ -343,15 +349,18 @@
           }
         })
           .then((response) => {
-            // console.log(response)
+            console.log(response)
+            
             if (response.data.task == null) {
               that.tasks = new Array();
               layer.msg("暂无选课任务！");
             } else {
               that.task = response.data.task;
               that.tableData3 = response.data.xkTaskCourseList;
-              that.courseName=response.data.courseName;
-              that.setHavChoLis();
+              that.hacChoClassData=response.data.xkTaskCourseSelectList;
+              that.allClass = that.tableData3.length;
+              that.haveClass = that.hacChoClassData.length;
+              that.courseName = response.data.courseName;
             }
 
           })
@@ -368,15 +377,16 @@
       },
       //选择
       xuanze(id, taskId,limitCours,classifyId,ssex) {
-        if(new Date(this.task.curTime)>new Date(this.task.overTime)){
+        let that = this;
+        if(new Date(that.task.curTime)>new Date(that.task.overTime)){
           layer.msg("选课任务已结束");
           return;
         }
-        this.$ajax.get('stu/setCourse', {
+        that.$ajax.get('stu/setCourse', {
           params: {
             id: id,
             taskId: taskId,
-            limitNums:this.task.limitNums,
+            limitNums:that.task.limitNums,
             limitCours:limitCours,
             classifyId:classifyId,
             ssex:ssex
@@ -387,10 +397,10 @@
               layer.msg(response.data.msg);
             }else {
               layer.msg("选课成功！");
-              if (this.butt = "xq") {
-                this.getCourse(id);
+              if (that.butt = "xq") {
+                that.getCourse(id);
               }
-                this.changeTerms(this.taskId);
+                that.changeTerms(that.taskId);
 
             }
           })
@@ -400,18 +410,20 @@
       },
       //退选
       tuixuan(id,suoyin) {
-        console.log(suoyin);
-        if(new Date(this.task.curTime)>new Date(this.task.overTime)){
+        // console.log(suoyin);
+        // console.log(id);
+        let that = this;
+        if(new Date(that.task.curTime)>new Date(that.task.overTime)){
           layer.msg("选课任务已结束");
           return;
         }
-        var vue=this;
+        // var vue=that;
 
         layer.open({
           content: '您确定要退选吗'
           , btn: ['退选', '取消']
           , yes: function (index) {
-            vue.$ajax.get('stu/deleteCourse', {
+            that.$ajax.get('stu/deleteCourse', {
               params: {
                 id: id,
               }
@@ -420,19 +432,18 @@
                 if (response.data != 200) {
                   layer.msg("操作失败！");
                 } else {
-                  for(let i=0;i<vue.hacChoClassData.length;i++){
-                    if(vue.hacChoClassData[i].id=id){
-                         vue.hacChoClassData.splice(i,1);
+                  for(let i=0;i<that.hacChoClassData.length;i++){
+                    if(that.hacChoClassData[i].id == id){
+                      // debugger
+                         that.hacChoClassData.splice(i,1);
                     }
                   }
-                  
-
-                  console.log(vue.hacChoClassData);
+                  // console.log(vue.hacChoClassData);
                   layer.msg("退选成功！");
-                  if (vue.butt = "xq") {
-                    vue.getCourse(id);
+                  if (that.butt = "xq") {
+                    that.getCourse(id);
                   }
-                  vue.changeTerms(vue.taskId);
+                  that.changeTerms(that.taskId);
 
                 }
 
@@ -480,22 +491,8 @@
         }else{
             return null;
         }
-      },
-      setHavChoLis(){
-        let that = this;
-        for(let i=0; i < that.tableData3.length;i++){
-          if(that.tableData3[i].courseFlag == "退选"){
-             for(let n=0; n< that.hacChoClassData.length;n++){
-              //  debugger
-                  if(that.hacChoClassData[n].classifyId == that.tableData3[i].classifyId){
-                       return false;
-                  }  
-             }
-             that.hacChoClassData.push(that.tableData3[i]);
-           
-          }
-        }
       }
+      
       
     }
   }

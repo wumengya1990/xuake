@@ -136,7 +136,7 @@
       <!--列表编辑结束-->
 
       <!--  导入课程 -->
-    <div id="layerEditImportCLass" class="hwui-layer" :style="{right:-layerWidth,width:layerWidth}">
+    <div id="layerEditImportCLass" class="hwui-layer" :style="{right:-layerWidth1,width:layerWidth1}">
       <div class="ld-title">
         <h3>导入课程</h3>
         <i class="hwui hwuifont hwui-shanchu ldt-close" @click="closeImportCLass()"></i>
@@ -146,7 +146,7 @@
           <div class="downloadBox">
             <el-button type="primary" style="display:block; width:200px; margin:10px auto;" @click="downLoadDocument()">下载模板</el-button>
             <div class="noticeMessage">
-              <p>1、请下载模板，并按照模板格式填写，再导入数据</p>
+              <p>请下载模板，并按照模板格式填写，再导入数据</p>
             </div>
           </div>
           <div class="upLoadBox" style="width:100%;">
@@ -154,7 +154,7 @@
                 class="upload-demo"
                 :action="uploadPathNew"
                 :data="keysss"
-                :format="['xls', 'xlsx']"
+                :format="['xls','xlsx']"
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :on-change="handleChange"
@@ -164,8 +164,8 @@
                 :limit="1"
                 list-type="picture"
                 >
-                <el-button size="small" type="primary">点击上传</el-button>
-                <div slot="tip" class="el-upload__tip">只能上传1张图片（支持jpg/png）</div>
+                <el-button type="primary" style=" display:block; width:200px; margin:10px auto;">点击上传</el-button>
+                <div slot="tip" class="el-upload__tip" style="text-align:center;">请上传xls、xlsx的文件</div>
               </el-upload>
           </div>
         </div>
@@ -186,6 +186,7 @@
   import {mapState} from 'vuex';
   const axiosConfig = require('../../../../static/conf/axios.conf');
   const baseURL = axiosConfig.getBaseUrl();//axios 全局设置
+  import axios from 'axios';//引入axios
   import fold_Btn_Bg from '../images/foldBtn.png'
   import User from '../../../mixins/user';
   import generalHead from './generalHead';
@@ -202,9 +203,11 @@
         courseList:[],
         foldBtnBg:fold_Btn_Bg,
         layerWidth:'50%',
+        layerWidth1:'30%',
         taskId:this.$route.params.setTaskId,
         keysss:{
-          taskId:this.$route.params.setTaskId
+          taskId:this.$route.params.setTaskId,
+          ucId:this.$store.state.ucId
         },
         isPublish:this.$route.params.setStatus,
         teacherList : [],
@@ -320,12 +323,14 @@
       },
       //获取选课课程列表
       getCourseList(){
-          this.$ajax.get('taskCourse/courseList',{params:{taskId:this.taskId}})
+        let that = this;
+          that.$ajax.get('taskCourse/courseList',{params:{taskId:that.taskId}})
           .then((response)=>{
+            // console.log(that.$store.state.ucId);
                if(response.data.length==0){
                  return;
                }else{
-                 this.courseList = response.data;
+                 that.courseList = response.data;
                }
           })
           .catch(function (error) {
@@ -594,9 +599,61 @@
       downLoadDocument(){
         window.open(baseURL+"/load/downloadExcel");
       }
+      // ,
+      // uploadSectionFile(params){
+      //   var self = this;
+      //   file = params.file,
+      //   fileType = file.type,
+      //   isXls = fileType.indexOf('xls') != -1,
+      //   isXlsx = fileType.indexOf('xlsx') != -1,
+      //   file_url = self.$refs.upload.uploadFiles[0].url;
+
+      //   if(!isXls && !isXlsx){
+      //       _.$alert('请选择图片或视频!', '提示', { type: 'error' });
+      //       self.$refs.upload.uploadFiles = []; 
+      //       return;
+      //   }
+
+      //   var isLt2M = file.size / 1024 / 1024 < 10;
+      //   if (!isLt2M) {
+      //       self.$message.warning('上传模板大小不能超过10MB!')
+      //       self.$refs.upload.uploadFiles = []; 
+      //       return;
+      //   }
+      // },
+      // uploadFile: function (file, isVideo, videoDiv) {
+      //     var self = this,
+      //         formData = new FormData();
+      //         formData.append(self.upload_name, file);
+
+      //     axios.post(self.upload_url, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+      //         .then(function (res) {
+      //             if (res.result === '0000') {
+      //                 self.ad_url = res.data[0];
+      //                 //创建一个显示video的容器
+      //                 if (isVideo) {
+      //                     var liItem = document.getElementsByClassName('el-upload-list__item')[0];
+      //                     videoDiv.style.width = '278px';
+      //                     videoDiv.style.height = '415px';
+      //                     liItem.prepend(videoDiv);
+      //                 }
+      //                 return;
+      //             }
+      //             _.$alert('上传失败，请重新上传', '提示', { type: 'error' });
+      //             self.$refs.upload.uploadFiles = []; 
+      //         })
+      //         .catch(function (err) {
+      //             console.error(err);
+      //         });
+      // }
 
 
     }
 
   }
 </script>
+
+<style scoped>
+.hwui-layer >>> .el-upload{ display: block; text-align:center;}
+</style>
+

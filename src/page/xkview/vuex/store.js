@@ -16,5 +16,16 @@ export default new Vuex.Store({
   modules: {
     userModule: MODULE_USER
 
+  },
+  state:{
+    ucId:0
+  },
+  mutations:{
+    saveUcId(state, data) {
+      state.ucId = data;
+      window.localStorage.setItem("ucId", data); //就是这里，保存到了 localStorage 中
+      
+      // console.log("api写入Store与localStorage中：" + data);
+    },
   }
 });

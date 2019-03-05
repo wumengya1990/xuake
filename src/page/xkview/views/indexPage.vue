@@ -395,7 +395,7 @@
       toStuAdujust(tid){
         this.$router.push({
           name:"studentAdjust",
-          params: { taskId: tid }
+          params: {taskId:tid,ucId:this.$route.params.ucId}
         });
       },
       //跳转到查看结果页面

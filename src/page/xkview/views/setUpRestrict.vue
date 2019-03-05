@@ -24,7 +24,7 @@
 		
 			<div id="panel-main" class="hwui-right-content" style="border:none;top:55px;left:20px; right: 20px; bottom:20px;" title="">
 				<h3 class="xmBt"><span>选课数量限制</span></h3>
-				<div style="margin:0 0 50px;">
+				<div style="margin:0 0 10px;">
 					<div class="setBox_1" v-if="showMainClassify">
 						<em>限选课程数量：</em>&nbsp;&nbsp;&nbsp;&nbsp;
 						<span>{{mainClassify}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,6 +35,14 @@
 						<el-input v-model="mainClassify" placeholder="请输入内容" type="number" max="200" min="0" style=" width: 200px; margin: 0 5px 0 0;" size="small"></el-input>
 						<el-button size="small" @click="updateMainClassify()">保存</el-button>
 					</div>
+				</div>
+
+				<h3 class="xmBt"><span>学生选课页面样式</span></h3>
+				<div style="margin:0 0 10px;">
+					<el-radio-group v-model="showStyle" @change="setStyle">
+						<el-radio :label="1">列表式</el-radio>
+						<el-radio :label="2">卡片式</el-radio>
+					</el-radio-group>
 				</div>
 
 
@@ -51,7 +59,7 @@
 				<div id="panel-sub" class="easyui-panel" style="border:none;" title="">
 					
 					
-					<div id="dataTable" class="dataTable" style="position: fixed; left:20px; right:20px; top:340px; bottom:20px; margin:auto;">
+					<div id="dataTable" class="dataTable" style="position: fixed; left:20px; right:20px; top:380px; bottom:20px; margin:auto;">
 					    <el-table :data="taskClassifyList" border class="dadadada" style="width: 100%" height="80%">
 						    <el-table-column prop="classifyName" label="课程分类名称"></el-table-column>
 						    <el-table-column prop="courseNames" label="课程名称"></el-table-column>
@@ -137,7 +145,7 @@
 
     data() {
       return {
-        
+        showStyle:1,
         layerWidth:'50%',
         taskClassifyList:[],
         taskId:this.$route.params.setTaskId,
@@ -437,7 +445,25 @@
             this.form.courseList=[];
             this.form.chooseList=[];
             this.form.maxCount=0;
-	    }
+			},
+			setStyle(value){
+				// console.log(value)
+				let that = this;
+				that.showStyle = value;
+				that.$ajax.get('/task/installTaskType',{params:{taskId:that.taskId,showType:that.showStyle}}).then(res=>{
+					console.log(res);
+					if(res.data.sign){
+						that.$message({
+							message:'显示样式设置成功',
+							type:'success'
+						})
+					}else{
+						that.$message.error('显示样式设置失败')
+					}
+				}).catch(function (error) {
+	            console.log(error);
+	        });
+			}
     }
   }
 </script>
