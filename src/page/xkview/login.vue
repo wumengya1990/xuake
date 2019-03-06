@@ -46,7 +46,7 @@
 </template>
 <script>
 import "./css/loginmini.css"
-import login_Img from './images/login/loginImg.png';
+import login_Img from './images/login/loginImg.jpg';
 import login_Bg  from  './images/login/loginBg.png';
 import user03_Bg  from  './images/login/user_03.png';
 import password_Bg  from  './images/login/mima_03.png';
@@ -78,11 +78,11 @@ const baseURL = axiosConfig.getBaseUrl();//axios 全局设置
     computed: {
     },
     created(){
-      this.loginImg = baseURL + this.loginImg;
-      this.loginBg =  baseURL + this.loginBg;
-      this.user03Bg = baseURL + this.user03Bg;
-      this.passwordBg = baseURL + this.passwordBg;
-      this.titleIconBg = baseURL + this.titleIconBg;
+      // this.loginImg = baseURL + this.loginImg;
+      // this.loginBg =  baseURL + this.loginBg;
+      // this.user03Bg = baseURL + this.user03Bg;
+      // this.passwordBg = baseURL + this.passwordBg;
+      // this.titleIconBg = baseURL + this.titleIconBg;
     },
     methods: {
       enterLogin(){

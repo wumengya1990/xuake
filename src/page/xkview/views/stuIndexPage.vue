@@ -46,7 +46,8 @@
 					</div>
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane name="first">
-                  <span slot="label"> 全部课程（{{haveClass}}/{{allClass}}）</span>
+              <!-- （{{haveClass}}/{{allClass}}） -->
+                  <span slot="label"> 全部课程</span>
                   <div v-show="listStyle=='1'">
                   <el-table :data="tableData3" border class="dadadada" height="500px" style="width: 100%">
                     <el-table-column prop="courseName" label="课程名称"></el-table-column>
@@ -87,7 +88,8 @@
             </el-tab-pane>
 
             <el-tab-pane name="second">
-              <span slot="label"> 已选课程{{haveClass}}</span>
+              <!-- {{haveClass}} -->
+              <span slot="label"> 已选课程</span>
               <div v-show="listStyle=='1'">
                 <el-table :data="hacChoClassData" border class="dadadada" height="500px" style="width: 100%">
                     <el-table-column prop="courseName" label="课程名称"></el-table-column>

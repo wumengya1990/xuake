@@ -50,6 +50,10 @@ module.exports = {
     assetsSubDirectory: buildConfig.assetsSubDirectory,
     assetsPublicPath: buildConfig.assetsPublicPath,
 
+    // assetsRoot: path.resolve(__dirname, '../dist'),
+    // assetsSubDirectory: 'static',
+    // assetsPublicPath: './',
+
     /**
      * Source Maps
      */

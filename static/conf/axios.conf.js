@@ -5,13 +5,13 @@ const projectConf = require('./project.conf');
 /**
  * 配置相对请求根路径
  */
-const baseUrl = 'http://192.168.0.136:7089/xuanke/';
+const baseUrl = 'http://yunpt.com.cn:9910/xuanke/';
 
 /**
  * 配置代理地址
  */
 const proxys = {
-  '/api': ['http://192.168.0.136:7089/xuanke/']
+  '/api': ['http://yunpt.com.cn:9910/xuanke/']
 };
 
 /**

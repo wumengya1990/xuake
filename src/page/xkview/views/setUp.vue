@@ -155,7 +155,7 @@
                 :action="uploadPathNew"
                 :data="keysss"
                 :format="['xls','xlsx']"
-                :on-preview="handlePreview"
+                :on-preview="handlePreviewNew"
                 :on-remove="handleRemove"
                 :on-change="handleChange"
                 :before-upload="beforeUP"
@@ -167,6 +167,14 @@
                 <el-button type="primary" style=" display:block; width:200px; margin:10px auto;">点击上传</el-button>
                 <div slot="tip" class="el-upload__tip" style="text-align:center;">请上传xls、xlsx的文件</div>
               </el-upload>
+              <dl class="successUpload">
+                  <dt><i class="el-icon-circle-check-outline"></i></dt>
+                  <dd>课程已导入</dd>
+              </dl>
+              <dl class="failUpload">
+                  <dt><i class="el-icon-circle-close-outline"></i></dt>
+                  <dd>课程未导入</dd>
+              </dl>
           </div>
         </div>
       </div>
@@ -190,6 +198,7 @@
   import fold_Btn_Bg from '../images/foldBtn.png'
   import User from '../../../mixins/user';
   import generalHead from './generalHead';
+import { setTimeout } from 'timers';
   export default {
     components: {
       generalHead
@@ -252,7 +261,8 @@
             courseImg:'',
             fileList : [],
             isUpload:0
-        }
+        },
+        
 
       }
     },
@@ -502,6 +512,9 @@
       handlePreview(file) {
 
       },
+      handlePreviewNew(file) {
+        console.log(file);
+      },
       handleChange(file, fileList){
         //alert(2);
         //console.log(file);
@@ -517,10 +530,18 @@
         this.getCourseList();
         this.isUpload = 1;
       },
-      handleSuccessNew(res,file,fileList){
-        console.log(res);
-        console.log(file);
-        console.log(fileList);
+      handleSuccessNew(response,file,fileList){
+        // console.log(123);
+        console.log(response)
+        if(response.flag){
+            document.getElementsByClassName("successUpload")[0].style.display = "block";
+        }else{
+            document.getElementsByClassName("failUpload")[0].style.display = "block";
+        }
+        setTimeout(function(){
+            document.getElementsByClassName("successUpload")[0].style.display = "none";
+            document.getElementsByClassName("failUpload")[0].style.display = "none";
+        },5000)
         this.formNew.courseImg = file.response;
         this.isUpload = 1;
       },
@@ -580,72 +601,34 @@
       beforeUP(file){
         this.isUpload = 0;
           // console.log(file,'文件');
-          // let that = this;
-          // that.files = file;
-          // const extension = file.name.split('.')[1] === 'xls'
-          // const extension2 = file.name.split('.')[1] === 'xlsx'
-          // const isLt2M = file.size / 1024 / 1024 < 10
-          // if (!extension && !extension2) {
-          //   that.$message.warning('上传模板只能是 xls、xlsx格式!')
-          //   return false
-          // }
-          // if (!isLt2M) {
-          //    that.$message.warning('上传模板大小不能超过10MB!')
-          //     return false
-          // }
-          //   that.formNew.name = file.name;
-          //   return false // 返回false不会自动上传
+          let that = this;
+          that.files = file;
+          const extension = file.name.split('.')[1] === 'xls'
+          const extension2 = file.name.split('.')[1] === 'xlsx'
+          const isLt2M = file.size / 1024 / 1024 < 10
+          if (!extension && !extension2) {
+            that.$message.warning('上传模板只能是 xls、xlsx格式!')
+          }
+          if (!isLt2M) {
+             that.$message.warning('上传模板大小不能超过10MB!')
+          }
+            that.formNew.name = file.name;
+          
+          let isPass = (extension||extension2) && isLt2M;
+          if(isPass){
+               that.$message.success('正在上传中')
+          }
+            return isPass; // 返回false不会自动上传
       },
       downLoadDocument(){
         window.open(baseURL+"/load/downloadExcel");
+      },
+      shoudongshangchuan(){
+        let that = this;
+
+
       }
-      // ,
-      // uploadSectionFile(params){
-      //   var self = this;
-      //   file = params.file,
-      //   fileType = file.type,
-      //   isXls = fileType.indexOf('xls') != -1,
-      //   isXlsx = fileType.indexOf('xlsx') != -1,
-      //   file_url = self.$refs.upload.uploadFiles[0].url;
-
-      //   if(!isXls && !isXlsx){
-      //       _.$alert('请选择图片或视频!', '提示', { type: 'error' });
-      //       self.$refs.upload.uploadFiles = []; 
-      //       return;
-      //   }
-
-      //   var isLt2M = file.size / 1024 / 1024 < 10;
-      //   if (!isLt2M) {
-      //       self.$message.warning('上传模板大小不能超过10MB!')
-      //       self.$refs.upload.uploadFiles = []; 
-      //       return;
-      //   }
-      // },
-      // uploadFile: function (file, isVideo, videoDiv) {
-      //     var self = this,
-      //         formData = new FormData();
-      //         formData.append(self.upload_name, file);
-
-      //     axios.post(self.upload_url, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
-      //         .then(function (res) {
-      //             if (res.result === '0000') {
-      //                 self.ad_url = res.data[0];
-      //                 //创建一个显示video的容器
-      //                 if (isVideo) {
-      //                     var liItem = document.getElementsByClassName('el-upload-list__item')[0];
-      //                     videoDiv.style.width = '278px';
-      //                     videoDiv.style.height = '415px';
-      //                     liItem.prepend(videoDiv);
-      //                 }
-      //                 return;
-      //             }
-      //             _.$alert('上传失败，请重新上传', '提示', { type: 'error' });
-      //             self.$refs.upload.uploadFiles = []; 
-      //         })
-      //         .catch(function (err) {
-      //             console.error(err);
-      //         });
-      // }
+      
 
 
     }
@@ -655,5 +638,14 @@
 
 <style scoped>
 .hwui-layer >>> .el-upload{ display: block; text-align:center;}
+.hwui-layer >>> .el-upload-list{ display: none;}
+.successUpload{ text-align: center; position: relative; margin:20px auto; color: #65bb25; display:none;}
+.successUpload dt{ padding: 0 0 10px;}
+.successUpload dd{ font-size: 16px;}
+.successUpload i{ font-size:70px;}
+.failUpload{ text-align: center; position: relative; margin:20px auto; color: #F00; display:none;}
+.failUpload dt{ padding: 0 0 10px;}
+.failUpload dd{ font-size: 16px;}
+.failUpload i{ font-size:70px;}
 </style>
 

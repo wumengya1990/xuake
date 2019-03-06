@@ -47,7 +47,7 @@
       };
     },
     created(){
-    this.logopic = baseurl + this.logopic;
+    // this.logopic = baseurl + this.logopic;
      this.findUserInfo();
     },
     computed: {
