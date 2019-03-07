@@ -17,7 +17,10 @@ import stuIndexPage from  '../views/stuIndexPage'
 import studentAdjust from '../views/studentAdjust'
 import versionDes  from  '../views/version'
 import noDatePage  from  '../views/noDatePage'
+import noAuthority  from  '../views/noAuthority'
 import adminSet  from  '../views/adminSet'
+import adminChoWork  from  '../views/adminChoWork'
+
 export default new Router({
   routes: [{
     path: '/',
@@ -134,6 +137,20 @@ export default new Router({
           name:'noDatePage',
           components: {
             noDatePage: noDatePage
+          }
+        },
+        {
+          path: '/noAuthority',
+          name:'noAuthority',
+          components: {
+            noAuthority: noAuthority
+          }
+        },
+        {
+          path: '/adminChoWork',
+          name:'adminChoWork',
+          components: {
+            adminChoWork: adminChoWork
           }
         }
 

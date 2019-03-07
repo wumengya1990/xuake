@@ -48,11 +48,21 @@ module.exports = {
         }*/
   },
 
+  // assetsRoot: '../../xkfront/src/main/resources/static',//webpack输出的目标文件夹路径
+
+  // assetsPublicPath: '../../xkfront/',//webpack编译输出的发布路径
+
+  // assetsSubDirectory: 'xkfront',//打包二级文件夹
+
+  // htmlsSubDirectory: 'view'//html打包二级文件夹,默认在assetsSubDirectory下
+
+
   assetsRoot: '../../xkfront/src/main/resources/static',//webpack输出的目标文件夹路径
 
-  assetsPublicPath: '../../xkfront/',//webpack编译输出的发布路径
+  assetsPublicPath: '../../xuanke/',//webpack编译输出的发布路径
 
-  assetsSubDirectory: 'xkfront',//打包二级文件夹
+  assetsSubDirectory: 'xuanke',//打包二级文件夹
 
   htmlsSubDirectory: 'view'//html打包二级文件夹,默认在assetsSubDirectory下
+  
 };

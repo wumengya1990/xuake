@@ -122,7 +122,8 @@
         gradeFlag:'-1',
         classFlag:[],
         taskId:this.$route.params.setTaskId,
-        isPublish:this.$route.params.setStatus,
+				isPublish:this.$route.params.setStatus,
+				listStyleMark:this.$route.params.listStyle,
         currGradeId:'',
         currGradeName:'',
         currClassId:'',
@@ -154,21 +155,21 @@
       	toSetUp(){
 	       this.$router.push({
 	         name:"SetUp",
-         	 params: { setTaskId: this.taskId,setStatus:this.isPublish }
+         	 params: { setTaskId: this.taskId,setStatus:this.isPublish,listStyle:this.listStyleMark}
 	       });
 	    },
 	    //跳转参与班级页面
 	    toSetUpClass(){
        		this.$router.push({
          	name:"SetUpClass",
-         	params: { setTaskId: this.taskId,setStatus:this.isPublish }
+         	params: { setTaskId: this.taskId,setStatus:this.isPublish,listStyle:this.listStyleMark}
            });
         },
       	//跳转限制条件页面
       	toSetUpRestrict(){
 	       this.$router.push({
 	         name:"SetUpRestrict",
-         	 params: { setTaskId: this.taskId,setStatus:this.isPublish }
+         	 params: { setTaskId: this.taskId,setStatus:this.isPublish,listStyle:this.listStyleMark}
 	       });
       	},
       	//跳转首页

@@ -30,6 +30,10 @@
     <router-view  name="verDes"></router-view>
     <!-- 缺省页面-->
     <router-view  name="noDatePage"></router-view>
+    <!-- 无权限页面-->
+    <router-view  name="noAuthority"></router-view>
+    <!-- 缺省页面-->
+    <router-view  name="adminChoWork"></router-view>
 
   </div>
 </template>

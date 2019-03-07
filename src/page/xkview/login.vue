@@ -1,7 +1,7 @@
 <template>
   <div id="hwui" @keypress="enterLogin">
     <h3 class="loginTitle"><span style="margin-left:80px;">网上选课系统</span></h3>
-    <div style="background-color:#6dd1ff;height:500px;" >
+    <div style="background-color:#01aefa;height:500px;" >
       <div style="width:1100px;margin:0px auto;">
         <!-- 图片开始 -->
         <div class="loginBanner lfloat">
@@ -78,11 +78,11 @@ const baseURL = axiosConfig.getBaseUrl();//axios 全局设置
     computed: {
     },
     created(){
-      // this.loginImg = baseURL + this.loginImg;
-      // this.loginBg =  baseURL + this.loginBg;
-      // this.user03Bg = baseURL + this.user03Bg;
-      // this.passwordBg = baseURL + this.passwordBg;
-      // this.titleIconBg = baseURL + this.titleIconBg;
+      this.loginImg = baseURL + this.loginImg;
+      this.loginBg =  baseURL + this.loginBg;
+      this.user03Bg = baseURL + this.user03Bg;
+      this.passwordBg = baseURL + this.passwordBg;
+      this.titleIconBg = baseURL + this.titleIconBg;
     },
     methods: {
       enterLogin(){

@@ -5,6 +5,7 @@ const projectConf = require('./project.conf');
 /**
  * 配置相对请求根路径
  */
+// const baseUrl = 'http://192.168.0.136:9910/xuanke/';
 const baseUrl = 'http://yunpt.com.cn:9910/xuanke/';
 
 /**
@@ -13,6 +14,9 @@ const baseUrl = 'http://yunpt.com.cn:9910/xuanke/';
 const proxys = {
   '/api': ['http://yunpt.com.cn:9910/xuanke/']
 };
+// const proxys = {
+//   '/api': ['http://192.168.0.136:9910/xuanke/']
+// };
 
 /**
  * 获取代理地址配置

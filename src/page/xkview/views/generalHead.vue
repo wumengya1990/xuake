@@ -47,7 +47,7 @@
       };
     },
     created(){
-    // this.logopic = baseurl + this.logopic;
+    this.logopic = baseurl + this.logopic;
      this.findUserInfo();
     },
     computed: {
@@ -60,7 +60,8 @@
          this.$ajax.get('view/loginOut',{params:{
           }})
           .then((response)=>{
-
+             this.$store.commit("saveLogin", false); //保存 保存状态
+            this.$store.commit("saveUcId", 0);
             this.$router.push({
                 name:"Login"
            });

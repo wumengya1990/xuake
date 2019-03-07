@@ -99,6 +99,7 @@
 .studentChouBox{ position: relative;}
 .switchBtn{ position: absolute; top: 0; right: 0; z-index: 100;}
 
+.classList{ position: absolute; left: 0; top:50px; right: 0; bottom: 0; margin:auto; overflow-y: auto;}
 .classList .classBox{ float: left; width: 20%; text-align: center; border: 1px solid #eaeaea; border-right: none; box-sizing: border-box;}
 .classList .classBoxOn{ background: #2199ed; border: 1px solid #4cb3fb; border-right: none;  color: #FFF;}
 .classList .classBox:nth-child(5n){ border-right: 1px solid #eaeaea;}
@@ -109,10 +110,16 @@
 .classList .classBox p font{ color: #17bf6b;}
 .classList .classBoxOn p font{ color: #ffe201;}
 .classList .classBox .bts{ padding: 10px;}
-.classList .classBoxOn .bts button{ background: #e29c1b; border: 1px solid #e29c1b; color: #65460e;}
+.classList .classBoxOn .bts button{ background: #ffca08; border: 1px solid #ffca08; color: #65460e;}
 
 .setBox h4{ height: 40px; line-height: 40px; border-bottom: 1px solid #eaeaea; margin: 0 0 10px}
 
 
 .downloadBox{ padding:10px 0;}
 .downloadBox .noticeMessage{ padding: 10px; background: #e4ebec; border: 1px solid #c4dde0; border-radius: 3px; text-align: center;}
+
+
+.xuanzeBox .xuanzeBox_1{ height:40px; line-height: 40px; margin:0 0 10px; border-bottom: 1px solid #dedede;}
+.xuanzeBox .xuanzeBox_1 span{ margin: 0 10px 0 0; display: inline-block; cursor: pointer;}
+.xuanzeBox .xuanzeBox_1 span.on{ border-bottom: 2px solid #2199ed; color: #2199ed;}
+

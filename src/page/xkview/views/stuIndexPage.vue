@@ -30,7 +30,7 @@
             <em>限选课程数量：</em>
             <div class="rightContent">
               <p class="Remarks"><span>&nbsp;&nbsp;{{task.limitNums}}</span></p>
-              <!--p class="Remarks">问题类别限选课程数量<span>2</span></p>-->
+              <!-- <p class="Remarks"> <span slot="label"> 全部课程（{{haveClass}}/{{allClass}}）</span><span>2</span></p> -->
             </div>
           </li>
           <!-- <li><em>已选课程：</em><div class="rightContent">{{courseName}}</div></li> -->
@@ -44,11 +44,10 @@
           <div class="switchBtn">
 							<!-- <el-button type="primary" size="mini" @click="listStyle=!listStyle">列表样式切换</el-button> -->
 					</div>
-          <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane name="first">
-              <!-- （{{haveClass}}/{{allClass}}） -->
-                  <span slot="label"> 全部课程</span>
-                  <div v-show="listStyle=='1'">
+          <div class="xuanzeBox">
+            <div class="xuanzeBox_1"><span :class="{on:allshow}" @click="allshow=!allshow">全部课程（{{haveClass}}/{{allClass}}）</span><span :class="{on:!allshow}" @click="allshow=!allshow">已选课程{{haveClass}}</span></div>
+            <div v-show="allshow">
+              <div v-show="listStyle=='1'">
                   <el-table :data="tableData3" border class="dadadada" height="500px" style="width: 100%">
                     <el-table-column prop="courseName" label="课程名称"></el-table-column>
                     <el-table-column prop="teacherName" label="任课老师"></el-table-column>
@@ -77,19 +76,14 @@
 											<p><i class="hwui hwuifont hwui-renyuan"></i>选课人数：<font>{{d.count}}</font><span>/</span>{{d.limitPers}}</p>
 											<div class="bts">
                         <el-button @click="selectCourse(d.id,d.courseFlag,d.taskId,d.limitCours,d.classifyId,d.ssex,index)" size="small" style="width:40%;">{{d.courseFlag}}</el-button>
-												<!-- <el-button @click="unChoClass(index)" v-if="d.havCho" size="small" style="background:#f1c011; color:#614208; width:40%;">取消选择</el-button>
-												<el-button @click="choClass(index)" v-else size="small" style="width:40%;">选择</el-button> -->
+												
 											</div>
 										</div>
 									</div>
-
 								</div>
 
-            </el-tab-pane>
-
-            <el-tab-pane name="second">
-              <!-- {{haveClass}} -->
-              <span slot="label"> 已选课程</span>
+            </div>
+            <div v-show="!allshow">
               <div v-show="listStyle=='1'">
                 <el-table :data="hacChoClassData" border class="dadadada" height="500px" style="width: 100%">
                     <el-table-column prop="courseName" label="课程名称"></el-table-column>
@@ -118,15 +112,16 @@
 											<p><i class="hwui hwuifont hwui-renyuan"></i>选课人数：<font>{{d.count}}</font><span>/</span>{{d.limitPers}}</p>
 											<div class="bts">
                         <el-button @click="selectCourse(d.id,d.courseFlag,d.taskId,d.limitCours,d.classifyId,d.ssex,index)" size="small" style="width:40%;">{{d.courseFlag}}</el-button>
-												<!-- <el-button @click="unChoClass(index)" v-if="d.havCho" size="small" style="background:#f1c011; color:#614208; width:40%;">取消选择</el-button>
-												<el-button @click="choClass(index)" v-else size="small" style="width:40%;">选择</el-button> -->
+												
 											</div>
 										</div>
 									</div>
                </div>
-            </el-tab-pane>
 
-          </el-tabs>
+            </div>
+          </div>
+
+          
         </div>
       </div>
     </div>
@@ -256,11 +251,11 @@
     mixins: [User],
     data() {
       return {
+        allshow:true,
         allClass:0,
         haveClass:0,
         listStyle:'1',
         choList:[],
-        activeName:'first',
         terms:[],
         layerWidth:"60%",
         taskId:'',
@@ -285,6 +280,7 @@
       // this.router_intercep();
     },
     mounted() {
+      this.setShowNum();
     },
     watch:{
       'taskId':{
@@ -296,6 +292,10 @@
       }
     },
     methods: {
+      setShowNum(){
+        this.allClass = this.tableData3.length;
+        this.haveClass = this.hacChoClassData.length;
+      },
       router_intercep(){
        if(window.user_Over_Type=='Teacher'||window.user_Over_Type=='SchoolManager'){
            this.$router.push({
@@ -324,7 +324,11 @@
           .then((response) => {
             console.log(response);
             // console.log("123");
-            that.listStyle = response.data[0].remark5;
+            if(response.data[0].remark5==null||response.data[0].remark5==1){
+              that.listStyle = "1"
+            }else{
+              that.listStyle = response.data[0].remark5
+            }
             // console.log(that.listStyle)
             if (response.data == null||response.data.length==0||response.data==undefined) {
               layer.msg("暂无选课任务！");
@@ -351,7 +355,7 @@
           }
         })
           .then((response) => {
-            console.log(response)
+            // console.log(response)
             
             if (response.data.task == null) {
               that.tasks = new Array();

@@ -30,7 +30,7 @@
                 <span>{{v.taskStatus}}</span>
               </p></div>
               <div class="curriculumSet">
-                <a style="cursor:pointer;" @click="toSetUp(v.id,v.status)" ><i class="icon xgk xgk-hj3"></i>选课设置</a>
+                <a style="cursor:pointer;" @click="toSetUp(v.id,v.status,v.remark5)" ><i class="icon xgk xgk-hj3"></i>选课设置</a>
                 <a @click="toStuAdujust(v.id)"  v-show="v.status==1"><i class="icon xgk xgk-hj3"></i>学生调整</a>
                 <a style="cursor:pointer;" v-show="v.status==1"   @click="toLookResult(v.id)"><i class="icon xgk xgk-hj3"></i>查看结果</a>
               </div>
@@ -166,7 +166,7 @@
     },
     created(){
     this.router_intercep();//前端路由拦截
-    this.findUserInfo();
+    this.findUserInfo(this.$route.params.haveCho);
     this.noDataPic = baseurl + this.noDataPic;
     this.selectTerms();
 
@@ -195,6 +195,7 @@
 
           }})
           .then((response)=>{
+          
            this.terms = response.data;
            this.termId = this.terms[0].id;
            this.findTask(this.termId);
@@ -203,11 +204,12 @@
             console.log(error);
           });
       },
-      findTask(tid){
+      findTask(tid){                                          //获取选课列表
         this.$ajax.get('task/findTasks',{params:{
           tremId:tid
           }})
           .then((response)=>{
+            console.log(response);
            if(response.data.length==0){
              this.tasks = [];
              layer.msg("暂无选课任务！");
@@ -383,11 +385,13 @@
 
       },
       //跳转选课设置页面
-      toSetUp(tid,status){
+      toSetUp(tid,status,remark){
          this.$router.push({
          name:"SetUp",
          params: { setTaskId: tid,
-                  setStatus:status
+                  setStatus:status,
+                  listStyle:remark
+                  
           }
        });
       },

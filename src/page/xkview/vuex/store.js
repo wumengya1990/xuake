@@ -18,13 +18,19 @@ export default new Vuex.Store({
 
   },
   state:{
-    ucId:0
+    ucId:0,
+    haslogin:false
+    
   },
   mutations:{
     saveUcId(state, data) {
       state.ucId = data;
       window.localStorage.setItem("ucId", data); //就是这里，保存到了 localStorage 中
-      
+      // console.log("api写入Store与localStorage中：" + data);
+    },
+    saveLogin(state, data) {
+      state.haslogin = data;
+      window.localStorage.setItem("haslogin", data); //就是这里，保存到了 localStorage 中
       // console.log("api写入Store与localStorage中：" + data);
     },
   }

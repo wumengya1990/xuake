@@ -4,6 +4,7 @@ const buildConf = require('./build.conf');
  * 服务端地址
  */
 const server_path = 'http://yunpt.com.cn:9910/xuanke/';
+// const server_path = 'http://192.168.0.136:9910/xuanke/';
 
 /**
  * 客户端地址

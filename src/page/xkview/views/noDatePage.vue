@@ -21,7 +21,7 @@ import nodata_Xk_Bg from '../images/nodataXkBg.jpg'
       }
     },
     created(){
-    this.nodataXkBg = baseurl + this.nodataXkBg;
+    this.nodataXkBg = this.nodataXkBg;
 
     }
   }

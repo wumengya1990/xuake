@@ -103,7 +103,7 @@
              loginType:'mobile'
         }})
           .then((response)=>{
-          debugger
+          // debugger
             var ms = response.data.resultInfo.message;
             if(ms=="success"&&response.status==200){
               var userType = response.data.records.userType;

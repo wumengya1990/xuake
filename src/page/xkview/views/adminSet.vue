@@ -1,6 +1,6 @@
 <template>
     <div class="adminSet">
-        <h3><span>选择排课管理员</span></h3>
+        <h3><span>选择选课管理员</span></h3>
         <div class="leftBox">
             <!-- <el-checkbox-group 
             v-model="chosed">
@@ -12,7 +12,7 @@
 
         <ul>
             <li v-for="(n,index) in adminPeoList" :key="n.id"><em>{{index}}、</em>{{n.realName}}
-                <el-button type="primary"  v-if="!n.xkguanliyuan" @click="setAdministrator(n.id,index)" plain size="mini">设置排课管理员</el-button>
+                <el-button type="primary"  v-if="!n.xkguanliyuan" @click="setAdministrator(n.id,index)" plain size="mini">设置选课管理员</el-button>
                 <el-button type="danger" v-if="n.xkguanliyuan" @click="unsetAdministrator(n.id,index)" size="mini">取消设置</el-button>
             </li>
         </ul>

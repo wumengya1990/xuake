@@ -136,7 +136,7 @@
       <!--列表编辑结束-->
 
       <!--  导入课程 -->
-    <div id="layerEditImportCLass" class="hwui-layer" :style="{right:-layerWidth1,width:layerWidth1}">
+    <div id="layerEditImportCLass" class="hwui-layer daoru" :style="{right:-layerWidth1,width:layerWidth1}">
       <div class="ld-title">
         <h3>导入课程</h3>
         <i class="hwui hwuifont hwui-shanchu ldt-close" @click="closeImportCLass()"></i>
@@ -219,6 +219,7 @@ import { setTimeout } from 'timers';
           ucId:this.$store.state.ucId
         },
         isPublish:this.$route.params.setStatus,
+        listStyleMark:this.$route.params.listStyle,
         teacherList : [],
         options: [
           {value: '第一节',label: '第一节'},
@@ -308,21 +309,22 @@ import { setTimeout } from 'timers';
       toSetUp(){
          this.$router.push({
          name:"SetUp",
-         params: { setTaskId: this.taskId,setStatus:this.isPublish }
+         params: { setTaskId: this.taskId,setStatus:this.isPublish,listStyle:this.listStyleMark}
        });
       },
       //跳转参与班级页面
       toSetUpClass(){
          this.$router.push({
          name:"SetUpClass",
-         params: { setTaskId: this.taskId,setStatus:this.isPublish }
+         params: { setTaskId: this.taskId,setStatus:this.isPublish,listStyle:this.listStyleMark}
          });
       },
       //跳转限制条件页面
       toSetUpRestrict(){
+        
         this.$router.push({
          name:"SetUpRestrict",
-         params: { setTaskId: this.taskId,setStatus:this.isPublish }
+         params: { setTaskId: this.taskId,setStatus:this.isPublish,listStyle:this.listStyleMark}
        });
       },
       //跳转首页
@@ -337,6 +339,7 @@ import { setTimeout } from 'timers';
           that.$ajax.get('taskCourse/courseList',{params:{taskId:that.taskId}})
           .then((response)=>{
             // console.log(that.$store.state.ucId);
+            // console.log(response)
                if(response.data.length==0){
                  return;
                }else{
@@ -524,9 +527,8 @@ import { setTimeout } from 'timers';
         this.isUpload = 0;
       },
       handleSuccess(res,file,fileList){
-        //console.log(file);
-        this.formNew.courseImg = file.response;
-        console.log(this.formNew);
+        this.form.courseImg = file.response;
+        // console.log(this.formNew);
         this.getCourseList();
         this.isUpload = 1;
       },
@@ -535,6 +537,7 @@ import { setTimeout } from 'timers';
         console.log(response)
         if(response.flag){
             document.getElementsByClassName("successUpload")[0].style.display = "block";
+            this.getCourseList();
         }else{
             document.getElementsByClassName("failUpload")[0].style.display = "block";
         }
@@ -612,7 +615,7 @@ import { setTimeout } from 'timers';
           if (!isLt2M) {
              that.$message.warning('上传模板大小不能超过10MB!')
           }
-            that.formNew.name = file.name;
+            that.form.name = file.name;
           
           let isPass = (extension||extension2) && isLt2M;
           if(isPass){
@@ -638,7 +641,7 @@ import { setTimeout } from 'timers';
 
 <style scoped>
 .hwui-layer >>> .el-upload{ display: block; text-align:center;}
-.hwui-layer >>> .el-upload-list{ display: none;}
+.daoru >>> .el-upload-list{ display: none;}
 .successUpload{ text-align: center; position: relative; margin:20px auto; color: #65bb25; display:none;}
 .successUpload dt{ padding: 0 0 10px;}
 .successUpload dd{ font-size: 16px;}

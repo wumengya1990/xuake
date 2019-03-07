@@ -149,7 +149,8 @@
         layerWidth:'50%',
         taskClassifyList:[],
         taskId:this.$route.params.setTaskId,
-        isPublish:this.$route.params.setStatus,
+				isPublish:this.$route.params.setStatus,
+				listStyleMark:this.$route.params.listStyle,
         mainClassify:'0',
         tempClassify:'0',
         showMainClassify:true,
@@ -173,8 +174,17 @@
 		this.getClassifyList();
 		this.getMainClassify();
 		this.getTempClassify();
+		this.getShowStyle();
     },
     methods: {
+			getShowStyle(){
+				console.log(this.listStyleMark);
+				if(this.listStyleMark==null||this.listStyleMark=="1"){
+						this.showStyle = 1
+				}else{
+						this.showStyle = 2
+				}
+			},
       router_intercep(){
        if(window.user_Over_Type=='Student'){
           layer.msg("不符合操作");
@@ -187,21 +197,21 @@
         toSetUp(){
 	       this.$router.push({
 	         name:"SetUp",
-         	 params: { setTaskId: this.taskId,setStatus:this.isPublish }
+         	 params: { setTaskId: this.taskId,setStatus:this.isPublish,listStyle:this.listStyleMark}
 	       });
         },
         //跳转参与班级页面
         toSetUpClass(){
 	       this.$router.push({
 	         name:"SetUpClass",
-         	 params: { setTaskId: this.taskId,setStatus:this.isPublish }
+         	 params: { setTaskId: this.taskId,setStatus:this.isPublish,listStyle:this.listStyleMark}
 	       });
         },
         //跳转限制条件页面
         toSetUpRestrict(){
 	       this.$router.push({
 	         name:"SetUpRestrict",
-         	 params: { setTaskId: this.taskId,setStatus:this.isPublish }
+         	 params: { setTaskId: this.taskId,setStatus:this.isPublish,listStyle:this.listStyleMark}
 	       });
         },
         //跳转首页
@@ -457,6 +467,7 @@
 							message:'显示样式设置成功',
 							type:'success'
 						})
+						that.listStyleMark=that.showStyle;
 					}else{
 						that.$message.error('显示样式设置失败')
 					}
