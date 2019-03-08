@@ -45,10 +45,11 @@
 							<!-- <el-button type="primary" size="mini" @click="listStyle=!listStyle">列表样式切换</el-button> -->
 					</div>
           <div class="xuanzeBox">
-            <div class="xuanzeBox_1"><span :class="{on:allshow}" @click="allshow=!allshow">全部课程（{{haveClass}}/{{allClass}}）</span><span :class="{on:!allshow}" @click="allshow=!allshow">已选课程{{haveClass}}</span></div>
+            <div class="xuanzeBox_1"><span :class="{on:allshow}" @click="allshow = true">全部课程（{{haveClass}}/{{allClass}}）</span><span :class="{on:!allshow}" @click="allshow = false">已选课程{{haveClass}}</span></div>
             <div v-show="allshow">
               <div v-show="listStyle=='1'">
                   <el-table :data="tableData3" border class="dadadada" height="500px" style="width: 100%">
+                    <el-table-column type="index" width="50"></el-table-column>
                     <el-table-column prop="courseName" label="课程名称"></el-table-column>
                     <el-table-column prop="teacherName" label="任课老师"></el-table-column>
                     <el-table-column prop="courseTime" label="上课时间"></el-table-column>
@@ -86,6 +87,7 @@
             <div v-show="!allshow">
               <div v-show="listStyle=='1'">
                 <el-table :data="hacChoClassData" border class="dadadada" height="500px" style="width: 100%">
+                     <el-table-column type="index" width="50"></el-table-column>
                     <el-table-column prop="courseName" label="课程名称"></el-table-column>
                     <el-table-column prop="teacherName" label="任课老师"></el-table-column>
                     <el-table-column prop="courseTime" label="上课时间"></el-table-column>
@@ -286,6 +288,7 @@
       'taskId':{
         handler:function(n,o){
           if(n != o ){
+            // this.getSelectXkTask(n);
             this.changeTerms(n);
           }
         },deep:true
@@ -322,13 +325,12 @@
           }
         })
           .then((response) => {
-            console.log(response);
-            // console.log("123");
-            if(response.data[0].remark5==null||response.data[0].remark5==1){
-              that.listStyle = "1"
-            }else{
-              that.listStyle = response.data[0].remark5
-            }
+            // console.log(response);
+            // if(response.data[0].remark5==null||response.data[0].remark5==1){
+            //   that.listStyle = "1"
+            // }else{
+            //   that.listStyle = response.data[0].remark5
+            // }
             // console.log(that.listStyle)
             if (response.data == null||response.data.length==0||response.data==undefined) {
               layer.msg("暂无选课任务！");
@@ -337,6 +339,7 @@
             } else {
               that.tasks = response.data;
               that.taskId = that.tasks[0].id;
+              // console.log(that.tasks);
               that.changeTerms(that.taskId);
             }
 
@@ -348,6 +351,15 @@
       //根据班级查询选课任务
       changeTerms: function (taskId) {
         let that = this;
+        for(let i=0;i<that.tasks.length;i++){
+          if(that.tasks[i].id==taskId){
+            if(that.tasks[i].remark5==null||that.tasks[i].remark5 =="1"){
+                that.listStyle = 1
+            }else{
+               that.listStyle = that.tasks[i].remark5;
+            }
+          }
+        }
         that.$ajax.get('stu/getXkTaskCourse', {
           params: {
             taskId: taskId,
@@ -356,7 +368,11 @@
         })
           .then((response) => {
             // console.log(response)
-            
+            // if(response.data[0].remark5==null||response.data[0].remark5==1){
+            //   that.listStyle = "1"
+            // }else{
+            //   that.listStyle = response.data[0].remark5
+            // }
             if (response.data.task == null) {
               that.tasks = new Array();
               layer.msg("暂无选课任务！");
@@ -398,7 +414,7 @@
             ssex:ssex
           }
         }).then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             if (!response.data.flag) {
               layer.msg(response.data.msg);
             }else {

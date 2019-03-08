@@ -17,7 +17,7 @@
         <div class="ht-user-menu border-box">
           <a @click="openNewWin('http://wiki.hwxxkj.com:8089/docs/show/314')">在线帮助</a>
           <a @click="versionDes()">版本说明</a>
-          <a href="http://192.168.0.112:7890/UcMain/Index">用户中心</a>
+          <!-- <a href="http://192.168.0.112:7890/UcMain/Index">用户中心</a> -->
           <a @click="loginOut()">注销</a>
         </div>
       </div>
@@ -60,7 +60,7 @@
          this.$ajax.get('view/loginOut',{params:{
           }})
           .then((response)=>{
-             this.$store.commit("saveLogin", false); //保存 保存状态
+            this.$store.commit("saveLogin", false); //保存 保存状态
             this.$store.commit("saveUcId", 0);
             this.$router.push({
                 name:"Login"
@@ -88,7 +88,24 @@
                 name:"versionDes"
          });
 
-      }
+      },
+      //获取cookie
+      getCookie(cname) {
+          var name = cname + "=";
+          var ca = document.cookie.split(';');
+          for(var i=0; i<ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') c = c.substring(1);
+              if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+          }
+          return "";
+      },
+      //清除cookie  
+      clearCookie(name) {  
+          setCookie(name, "", -1);  
+      }  
+
+      
 
     }
 

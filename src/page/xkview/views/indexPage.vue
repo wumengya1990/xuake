@@ -209,7 +209,7 @@
           tremId:tid
           }})
           .then((response)=>{
-            console.log(response);
+            // console.log(response);
            if(response.data.length==0){
              this.tasks = [];
              layer.msg("暂无选课任务！");

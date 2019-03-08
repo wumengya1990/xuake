@@ -40,6 +40,7 @@
 
       <div id="dataTable" class="dataTable">
         <el-table :data="courseStudents" border class="dadadada" height="600px" style="width: 100%">
+          <el-table-column type="index" width="50"></el-table-column>
           <el-table-column prop="courseName" label="课程名称"></el-table-column>
           <el-table-column prop="realName" label="姓名"></el-table-column>
           <el-table-column prop="loginName" label="学号"></el-table-column>

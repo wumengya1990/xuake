@@ -37,6 +37,7 @@
 
           <div id="dataTable" class="dataTable" style="position: fixed; left:20px; right:20px; top:155px; bottom:20px; margin:auto;">
             <el-table :data="courseList" border class="dadadada" style="width: 100%" height="80%">
+              <el-table-column type="index" width="50"></el-table-column>
               <el-table-column prop="courseName" label="课程名称"></el-table-column>
               <el-table-column prop="teacherName"  label="任课老师"></el-table-column>
               <el-table-column prop="courseTime"  label="上课时间"></el-table-column>

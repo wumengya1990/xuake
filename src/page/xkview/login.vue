@@ -1,5 +1,6 @@
 <template>
   <div id="hwui" @keypress="enterLogin">
+    <!-- @keypress="enterLogin" -->
     <h3 class="loginTitle"><span style="margin-left:80px;">网上选课系统</span></h3>
     <div style="background-color:#01aefa;height:500px;" >
       <div style="width:1100px;margin:0px auto;">

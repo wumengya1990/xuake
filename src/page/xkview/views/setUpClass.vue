@@ -37,6 +37,7 @@
 					
 					<div id="dataTable" class="dataTable" style="position: fixed; left:20px; right:20px; top:155px; bottom:20px; margin:auto;">
 					    <el-table :data="taskClassList" border class="dadadada" style="width: 100%" height="80%">
+								<el-table-column type="index" width="50"></el-table-column>
 						    <el-table-column prop="gradeName" label="年级"></el-table-column>
 						    <el-table-column prop="className" label="班级"></el-table-column>
 						    <el-table-column prop="sectionName" label="学段"></el-table-column>

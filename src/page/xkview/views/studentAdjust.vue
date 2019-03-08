@@ -62,6 +62,7 @@
 
 						<div id="dataTable" class="dataTable" style="position: fixed; left:20px; right:20px; top:155px; bottom:20px; margin:auto;">
 						    <el-table :data="tableData3" border class="dadadada" height="95%" style="width: 100%">
+                  <el-table-column type="index" width="50"></el-table-column>
 							    <el-table-column prop="realName" label="姓名"></el-table-column>
 							    <el-table-column prop="code" label="学号"></el-table-column>
 							    <el-table-column prop="sex" label="性别"></el-table-column>
@@ -131,8 +132,10 @@
 							    <el-table-column prop="limitPers" width="80" label="限选人数"></el-table-column>
 							    <el-table-column prop="operation" width="100" label="操作">
 							    	<template slot-scope="scope">
-                      <el-button type="primary" size="mini"
-                                 @click="selectCourse(scope.row)">
+                      <el-button v-if="scope.row.courseFlag=='退选'" type="primary" size="mini" @click="selectCourse(scope.row)">
+                        {{scope.row.courseFlag}}
+                      </el-button>
+                      <el-button v-if="scope.row.courseFlag=='选择'" type="primary" size="mini" @click="selectCourse(scope.row)">
                         {{scope.row.courseFlag}}
                       </el-button>
                     </template>

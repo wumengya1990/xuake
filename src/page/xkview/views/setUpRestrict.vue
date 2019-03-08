@@ -61,6 +61,7 @@
 					
 					<div id="dataTable" class="dataTable" style="position: fixed; left:20px; right:20px; top:380px; bottom:20px; margin:auto;">
 					    <el-table :data="taskClassifyList" border class="dadadada" style="width: 100%" height="80%">
+								<el-table-column type="index" width="50"></el-table-column>
 						    <el-table-column prop="classifyName" label="课程分类名称"></el-table-column>
 						    <el-table-column prop="courseNames" label="课程名称"></el-table-column>
 						    <el-table-column prop="limitCours" label="限选课程数量"></el-table-column>
@@ -178,8 +179,7 @@
     },
     methods: {
 			getShowStyle(){
-				console.log(this.listStyleMark);
-				if(this.listStyleMark==null||this.listStyleMark=="1"){
+				if(this.listStyleMark == null || this.listStyleMark=="1"){
 						this.showStyle = 1
 				}else{
 						this.showStyle = 2

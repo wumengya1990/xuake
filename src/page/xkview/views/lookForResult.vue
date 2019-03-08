@@ -33,6 +33,7 @@
 
         <div id="dataTable" class="dataTable" style="position: fixed; left: 20px; right: 20px; top: 155px; bottom: 20px; margin: auto;">
           <el-table :data="tableData3" border class="dadadada" height="100%" style="width: 100%;">
+            <el-table-column type="index" width="50"></el-table-column>
             <el-table-column prop="courseName" label="课程名称"></el-table-column>
             <el-table-column prop="teacherName" label="任课老师"></el-table-column>
             <el-table-column prop="courseTime" label="上课时间"></el-table-column>
@@ -93,6 +94,7 @@
 
       <div id="tcTable" class="tcTable">
         <el-table  :data="taskNotList" border class="dadadada" style="width: 100%">
+          <el-table-column type="index" width="50"></el-table-column>
           <el-table-column prop="realName" label="姓名"></el-table-column>
           <el-table-column prop="loginName" label="学号"></el-table-column>
           <el-table-column prop="SEX" label="性别"></el-table-column>

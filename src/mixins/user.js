@@ -18,7 +18,7 @@ export default {
       }else{
       that.$ajax.get('/findUserInfo',{params:{}})
           .then((response)=>{
-            console.log(response);
+            // console.log(response);
             if (response.data.record!=null) {
               Object.assign(that.userModule, {
               isLogin: true,
